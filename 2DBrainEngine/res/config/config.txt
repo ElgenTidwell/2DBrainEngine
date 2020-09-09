@@ -1,0 +1,28 @@
+/levelTester.png
+fill
+200
+/sound/HGW1.wav
+
+
+
+
+
+
+
+
+EDITING HELP
+
+(only solid colors will be accepted for collision in the engine)
+the top line is the level image, it gets them from the "res" folder in the app (you already passed trough it to get to this file)
+To make loading easy, follow this guide: Put your level in the res folder, then edit the first line to say /(YOUR LEVEL FILE NAME).png
+If you want more levels and want it to be organized, make a folder in the res folder names levels, then edit the first line to say /levels/(YOUR LEVEL FILE NAME).png
+The game will automatically load this level instead.
+
+The next line is more simple, it simply changes how the level draws. if you want a wireframe mode, replace it with wire, else put fill.
+
+The third line is the amount of enemies spawned, the higher this is, the slower the game starts. (i recommend 100-200 for small arenas and double for big ones)
+
+the last line is what music file to play. pretty simple, just put a .WAV file in the sound folder, and put 'sound/(MUSIC FILE NAME HERE).wav' on that last line. remember, the engine can ONLY play .wav files.
+
+Thats it!
+Feel free to post any levels online, i will soon add more features, and maybe a mod loader.
