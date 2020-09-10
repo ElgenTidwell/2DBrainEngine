@@ -58,6 +58,7 @@ public class Camera {
 	
 	public void update(GameContainer gc,GameManager gm, float dt)
 	{
+		
 		if(targ == null)
 		{
 			targ = gm.FindObject(targTag);

@@ -182,6 +182,7 @@ public class GameManager extends AbstractGame {
 				if (tile[x + y * levelW]) {
 					if(ArenaFill.equalsIgnoreCase("fill"))
 					{
+						if(r.WasRendered(x * tileSize, y * tileSize, tileSize, tileSize))
 						r.DrawFilledRect(x * tileSize, y * tileSize, tileSize, tileSize, tilecolor[x + y * levelW],-1);
 					}
 					else
@@ -194,6 +195,7 @@ public class GameManager extends AbstractGame {
 		}
 		
 		for (GameObject obj : objects) {
+			if(r.WasRendered((int)obj.posX, (int)obj.posY, obj.getWidth(), obj.getHeight()))
 			obj.Render(gc, r);
 		}
 		cam.render(r);

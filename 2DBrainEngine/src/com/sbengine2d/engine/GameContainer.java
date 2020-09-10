@@ -23,6 +23,8 @@ SOFTWARE.
 */
 package com.sbengine2d.engine;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import com.sbengine2d.engine.Input;
@@ -112,6 +114,7 @@ public class GameContainer implements Runnable{
 			if(render) {
 				r.clear();
 				game.render(this, r);
+				r.DrawTextGUI(Integer.toString(fps), 50, 50, Color.yellow.hashCode());
 				frames++;
 				window.update();
 			}else {
