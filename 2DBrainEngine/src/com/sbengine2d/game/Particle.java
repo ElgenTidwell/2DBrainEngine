@@ -106,27 +106,6 @@ public class Particle extends GameObject{
 			tileX --;
 			offX += GameManager.tileSize;
 		}
-		if(gm.getCollision(tileX, tileY - 1))
-		{
-			grav =0f;
-			//this.dead = true;
-		}else
-		if(gm.getCollision(tileX, tileY + 1))
-		{
-			grav =0f;
-			//this.dead = true;
-		}
-		
-		if(gm.getCollision(tileX + 1, tileY))
-		{
-			offX =0;
-			//this.dead = true;
-		}
-		if(gm.getCollision(tileX - 1, tileY))
-		{
-			offX =0;
-			//this.dead = true;
-		}
 		posX = tileX * GameManager.tileSize + offX;
 		posY = tileY * GameManager.tileSize + offY;
 		if(!loops)

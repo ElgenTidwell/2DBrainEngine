@@ -110,7 +110,6 @@ public class GameContainer implements Runnable{
 					frames = 0;
 				}
 			}
-			
 			if(render) {
 				r.clear();
 				game.render(this, r);

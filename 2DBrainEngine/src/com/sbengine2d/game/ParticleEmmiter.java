@@ -41,7 +41,17 @@ public class ParticleEmmiter extends GameObject{
 		this.offY = oy;
 		this.doonce = true;
 		this.col = color;
-		emit(gm);
+		emit(gm,12);
+	}
+	public ParticleEmmiter(int color, int tilex, int tiley, float ox, float oy, GameManager gm,boolean doonce)
+	{
+		this.tileX = tilex;
+		this.tileY = tiley;
+		this.offX = ox;
+		this.offY = oy;
+		this.doonce = doonce;
+		this.col = color;
+		emit(gm,12);
 	}
 	float delay = 10;
 	@Override
@@ -55,14 +65,17 @@ public class ParticleEmmiter extends GameObject{
 	
 	void emit(GameManager gm)
 	{
-		gm.CreateObject(new Particle(tileX,tileY,2, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
-		gm.CreateObject(new Particle(tileX,tileY,1, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
 		gm.CreateObject(new Particle(tileX,tileY,0, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
-		gm.CreateObject(new Particle(tileX,tileY,3, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
-		gm.CreateObject(new Particle(tileX,tileY,4, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
-		gm.CreateObject(new Particle(tileX,tileY,5, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
-		gm.CreateObject(new Particle(tileX,tileY,6, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
-		gm.CreateObject(new Particle(tileX,tileY,7, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
+	}
+	void emit(GameManager gm, int amm)
+	{
+		int index = 0;
+		for(int i = 0; i < amm; i++)
+		{
+			gm.CreateObject(new Particle(tileX,tileY,index, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col,col,7,0.45f, false));
+			index ++;
+			if(index > 7) index = 0;
+		}
 	}
 
 	@Override

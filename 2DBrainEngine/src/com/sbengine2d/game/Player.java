@@ -27,6 +27,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import com.sbengine2d.engine.EngineMath;
 import com.sbengine2d.engine.GameContainer;
 import com.sbengine2d.engine.Renderer;
 import com.sbengine2d.engine.audio.SoundClip;
@@ -51,16 +52,16 @@ public class Player extends GameObject{
 	private float jump = -8;
 	float bdelay = 10;
 	boolean doonce = false;
-	private Particle part = new Particle(tileX, tileY, 2, offX, offY, Color.orange.hashCode(), 0, 2, 0.5f, true);
 	
 	SoundClip shoot_s = new SoundClip("/sound/shoot.wav");
 	SoundClip jump_s = new SoundClip("/sound/jump.wav");
 	SoundClip hit_s = new SoundClip("/sound/hit_player.wav");
+	Particle part;
 	float targX;
 	@Override
 	public void Start(GameContainer gc, GameManager gm) {
 		// TODO Auto-generated method stub
-		
+		gm.CreateObject(new Particle(tileX,tileY,0, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),Color.orange.hashCode(),Color.orange.hashCode(),7,0.45f, false));
 	}
 	
 	
@@ -84,9 +85,24 @@ public class Player extends GameObject{
 	
 	@Override
 	public void Update(GameContainer gc, GameManager gm, float dt) {
-		part.Update(gc, gm, dt);
 		cam = gm.getCamera();
+		Color col = Color.orange;
+		switch(EngineMath.getRandomIntegerInRange(0, 2))
+		{
+		case 0:
+			col = Color.orange;
+			break;
+		case 1: 
+			col = Color.yellow;
+			break;
+		case 2: 
+			col = Color.red;
+			break;
+		}
 		
+		
+		//if(EngineMath.getRandomIntegerInRange(0, 4) == 3)
+			//gm.CreateObject(new Particle(tileX,tileY,2, offX + (GameManager.tileSize / 2), offY + (GameManager.tileSize / 2),col.hashCode(),col.hashCode(),14,0.25f, false));
 		if(health >= maxHealth)
 		{
 			live = true;
@@ -253,7 +269,6 @@ public class Player extends GameObject{
 	}
 	@Override
 	public void Render(GameContainer gc, Renderer r) {
-		part.Render(gc, r);
 		if(live)
 		{
 			//r.DrawText(name, (int)posX - 8, (int)posY + 16, 0xfffffff0);

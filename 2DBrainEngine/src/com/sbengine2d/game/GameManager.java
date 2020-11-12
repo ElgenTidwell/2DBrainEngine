@@ -111,7 +111,7 @@ public class GameManager extends AbstractGame {
 	public GameManager() {	
 		readConfig();
 		music = new SoundClip(colorSTR);
-		music.loop();
+		//music.loop();
 		//GUI on bootup
 		objects.add(new StaticEntity(0,0,"MenuTarget"));
 		cam = new Camera("MenuTarget");

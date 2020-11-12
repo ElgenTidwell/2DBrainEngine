@@ -116,6 +116,7 @@ public class EnemyAI extends GameObject{
 		{
 			if(gm.getCollision(tileX+1, tileY) || gm.getCollision(tileX+1, tileY + (int) Math.signum((int)offY)))
 			{
+				jumping = true;
 				if(offX < 0)
 				{
 					offX += dt*speed;
@@ -139,6 +140,7 @@ public class EnemyAI extends GameObject{
 		{
 			if(gm.getCollision(tileX-1, tileY) || gm.getCollision(tileX-1, tileY + (int) Math.signum((int)offY)))
 			{
+				jumping = true;
 				if(offX > 0)
 				{
 					offX -= dt*speed;
@@ -306,7 +308,6 @@ public class EnemyAI extends GameObject{
 
 		}
 		//myai.render(gc, r);
-		//myai.Render(gc, r);
 		r.DrawFilledRect((int)posX - (maxHealth/4), (int)posY - 16, health/2, 8, 0xffff0000,false);
 	}
 	@Override

@@ -66,7 +66,7 @@ public class AI extends GameObject{
 			{
 				for(int y = ty; y < ydest/16; y++)
 				{
-					if(gm.getCollision((x*GameManager.tileSize)+1,(y*GameManager.tileSize)) && !gm.getCollision((x*GameManager.tileSize)+1, (y*GameManager.tileSize) - 1))
+					if(gm.getCollision((x/GameManager.tileSize)+1,(y/GameManager.tileSize)) && !gm.getCollision((x/GameManager.tileSize)+1, (y/GameManager.tileSize) - 1))
 					{
 							y -= GameManager.tileSize;
 					}
@@ -83,6 +83,7 @@ public class AI extends GameObject{
 						
 					if(mDir != 1)
 					{
+						CalculatePath(gm,tx,ty);
 						return;
 					}
 				}
@@ -94,7 +95,7 @@ public class AI extends GameObject{
 			{
 				for(int y = ty; y > ydest/16; y--)
 				{
-					if(gm.getCollision((x*GameManager.tileSize)-1,(y*GameManager.tileSize)) && !gm.getCollision((x*GameManager.tileSize)-1, (y*GameManager.tileSize) - 1))
+					if(gm.getCollision((x/GameManager.tileSize)-1,(y/GameManager.tileSize)) && !gm.getCollision((x/GameManager.tileSize)-1, (y/GameManager.tileSize) - 1))
 					{
 							y -= GameManager.tileSize;
 					}
