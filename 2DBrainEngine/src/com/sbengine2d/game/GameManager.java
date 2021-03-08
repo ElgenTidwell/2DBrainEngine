@@ -199,7 +199,7 @@ public class GameManager extends AbstractGame {
 			obj.Render(gc, r);
 		}
 		cam.render(r);
-		guiRenderer.drawGUIs(r);
+		guiRenderer.drawGUI(r);
 	}
 	public void CreateObject(GameObject obj)
 	{

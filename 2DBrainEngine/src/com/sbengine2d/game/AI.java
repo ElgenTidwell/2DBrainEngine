@@ -24,23 +24,47 @@ SOFTWARE.
 package com.sbengine2d.game;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sbengine2d.engine.EngineMath;
 import com.sbengine2d.engine.GameContainer;
 import com.sbengine2d.engine.Renderer;
+import com.sbengine2d.engine.audio.SoundClip;
+import com.sbengine2d.gui.GUIComponent;
 
 public class AI extends GameObject{
+	
+	/*
+	 * 
+	 * 			AI Cookies!!!
+	 * AI cookies are something i created to make the AI want to stay near a place where theyve been able to reach their destination before.
+	 * 
+	 */
+	
+	
+	
 	public int xdest,ydest;
 	public int xpath,ypath;
+	public List<Integer> cookielocationsx = new ArrayList<Integer>(),cookielocationsy = new ArrayList<Integer>();
+	public SoundClip clip = new SoundClip("/sound/hit_enemy.wav");;
 	boolean switched;
 	@Override
 	public void Start(GameContainer gc, GameManager gm) {
 		// TODO Auto-generated method stub
-		
+		//cookielocationsx = new int[gm.getLevelWidth()];
+		//cookielocationsy = new int[gm.getLevelHeight()];
 	}
-	public void FindRandomDestination(GameManager gm,float posX, float posY) {
-		xdest = ((int)EngineMath.getRandomFloatInRange(posX - 3200, posX + 3200) / 16)*16;
-		ydest = ((int)EngineMath.getRandomFloatInRange(posY - 3200, posY + 3200) / 16)*16;
+	public void FindRandomDestination(GameManager gm,float posX, float posY) {	
+		if(cookielocationsx.size() > 0 && cookielocationsy.size() > 0)
+		{
+			xdest = (cookielocationsx.get((int)EngineMath.getRandomFloatInRange(0,cookielocationsx.size()))+(int)EngineMath.getRandomFloatInRange(-20,20))*GameManager.tileSize;
+			ydest = (cookielocationsy.get((int)EngineMath.getRandomFloatInRange(0,cookielocationsy.size()))+(int)EngineMath.getRandomFloatInRange(-20,20))*GameManager.tileSize;
+		}else 
+		{
+			xdest = ((int)EngineMath.getRandomFloatInRange(posX - 6400, posX + 6400) / 16)*16;
+			ydest = ((int)EngineMath.getRandomFloatInRange(posY - 6400, posY + 6400) / 16)*16;
+		}
 		
 		
 		CalculatePath(gm,(int)posX/16,(int)posY/16);
@@ -80,11 +104,6 @@ public class AI extends GameObject{
 						xpath = x;
 						ypath = y;
 					}
-						
-					if(mDir != 1)
-					{
-						return;
-					}
 				}
 			}
 		}
@@ -108,11 +127,6 @@ public class AI extends GameObject{
 						xpath = x;
 						ypath = y;
 					}
-					
-					if(mDir == 1)
-					{
-						return;
-					}
 				}
 			}
 		}
@@ -124,7 +138,11 @@ public class AI extends GameObject{
 		// TODO Auto-generated method stub
 		
 	}
-
+	public void PushCookie(int x, int y)
+	{
+		cookielocationsx.add(x);
+		cookielocationsy.add(y);
+	}
 
 	@Override
 	public void Render(GameContainer gc, Renderer r) {

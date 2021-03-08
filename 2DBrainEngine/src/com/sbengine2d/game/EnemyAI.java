@@ -249,6 +249,7 @@ public class EnemyAI extends GameObject{
 			{
 				myai.FindRandomDestination(gm,posX,posY);
 				myai.CalculatePath(gm, tileX, tileY);
+				myai.PushCookie(tileX, tileY);
 			}
 		}
 		
@@ -262,29 +263,28 @@ public class EnemyAI extends GameObject{
 				myai.CalculatePath(gm, tileX, tileY);
 				shooting = false;
 			}
-			if((int)posY/16 == (int)myai.ypath)
+			if((int)posY/16 == (int)myai.ypath && (int)posX/16 == (int)myai.xpath)
 			{
-				myai.FindRandomDestination(gm,posX,posY);
 				myai.CalculatePath(gm, tileX, tileY);
-			}else if((int)posY/16 == (int)myai.ypath + 1)
+				myai.PushCookie(tileX, tileY);
+			}else if((int)posY/16 == (int)myai.ypath + 1  && (int)posX/16 == (int)myai.xpath)
 			{
 				myai.FindRandomDestination(gm,posX,posY);
 				myai.CalculatePath(gm, tileX, tileY);
 			}
-			else if((int)posY/16 == (int)myai.ypath - 1)
+			else if((int)posY/16 == (int)myai.ypath - 1  && (int)posX/16 == (int)myai.xpath)
 			{
-				myai.FindRandomDestination(gm,posX,posY);
 				myai.CalculatePath(gm, tileX, tileY);
+				myai.PushCookie(tileX, tileY);
 			}
 		}
-		if((int)posX/16 == (int)myai.xdest/16)
+		if((int)posX/16 == (int)myai.xdest)
 		{
-			if((int)posY/16 == (int)myai.ydest/16)
+			if((int)posY/16 == (int)myai.ydest)
 			{
-				myai.FindRandomDestination(gm,posX,posY);
 				myai.CalculatePath(gm, tileX, tileY);
+				myai.PushCookie(tileX, tileY);
 			}
-			
 		}else
 		//old "ai"
 		/*
