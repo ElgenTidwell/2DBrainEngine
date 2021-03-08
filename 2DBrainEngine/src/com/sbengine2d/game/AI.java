@@ -83,7 +83,6 @@ public class AI extends GameObject{
 						
 					if(mDir != 1)
 					{
-						CalculatePath(gm,tx,ty);
 						return;
 					}
 				}
@@ -112,7 +111,6 @@ public class AI extends GameObject{
 					
 					if(mDir == 1)
 					{
-						CalculatePath(gm,tx,ty);
 						return;
 					}
 				}

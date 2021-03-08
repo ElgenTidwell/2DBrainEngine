@@ -123,7 +123,7 @@ public class GameManager extends AbstractGame {
 	{
 		loaded = true;
 		objects.add(new Player(8, 3 , 180,0));
-		cam = new Camera("player");
+		cam = new Camera("enemy");
 		loadLevel(level);
 		//Integer.parseInt(waveSize)
 		spawnWavesWithChunkCheck(Integer.parseInt(waveSize));

@@ -307,7 +307,7 @@ public class EnemyAI extends GameObject{
 			r.DrawFilledRect((int)posX - (maxHealth/4) - 2, (int)posY - 18, maxHealth/2 + 4, 12, 0xff0f0f0f,false);
 
 		}
-		//myai.render(gc, r);
+		myai.Render(gc, r);
 		r.DrawFilledRect((int)posX - (maxHealth/4), (int)posY - 16, health/2, 8, 0xffff0000,false);
 	}
 	@Override
@@ -316,7 +316,6 @@ public class EnemyAI extends GameObject{
 		health -= damageamm;
 		
 		onhit.setVolume(0.2f);
-		
 		if(fromid == 0 && live)
 		{
 			onhit.stop();

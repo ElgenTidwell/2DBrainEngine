@@ -49,7 +49,8 @@ public class GUIRenderer {
 	{
 		for(GUIComponent gui : guis)
 		{
-			r.DrawFilledRectGUI(gui.getPosX(), gui.getPosY(), gui.getSizeX(), gui.getSizeY(), gui.getColor());
+			r.DrawFilledRectGUI(gui.getPosX(), gui.getPosY(), gui.getSizeX(), gui.getSizeY(), gui.getColor() * 2);
+			r.DrawFilledRectGUI(gui.getPosX(), gui.getPosY(), gui.getSizeX()-4, gui.getSizeY()-4, gui.getColor());
 			
 			for(GUIText text : gui.getTexts())
 			{

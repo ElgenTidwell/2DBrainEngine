@@ -31,6 +31,7 @@ import com.sbengine2d.engine.EngineMath;
 import com.sbengine2d.engine.GameContainer;
 import com.sbengine2d.engine.Renderer;
 import com.sbengine2d.engine.audio.SoundClip;
+import com.sbengine2d.engine.gfx.GFXImage;
 import com.sbengine2d.platformergame.Bullet;
 public class Player extends GameObject{
 	
@@ -272,7 +273,7 @@ public class Player extends GameObject{
 		if(live)
 		{
 			//r.DrawText(name, (int)posX - 8, (int)posY + 16, 0xfffffff0);
-			r.DrawFilledRect((int)posX, (int)posY, 16, (int)(16 + fallDistance), 0xffff9000,2);
+			r.DrawFilledRect((int)posX, (int)posY, (int)(16 - fallDistance), (int)(16 + fallDistance), 0xffff9000,2);
 		}
 		else {
 			r.DrawTextGUI("You Died! " + "(you can only respawn when out of enemy fire!)", 800, 450, 0xfffffff0);

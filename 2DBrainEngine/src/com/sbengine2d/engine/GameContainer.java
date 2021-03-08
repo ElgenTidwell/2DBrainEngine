@@ -48,7 +48,7 @@ public class GameContainer implements Runnable{
 	private float scale = 1f;
 	
 
-	private String engineVersion = "0.2.4";
+	private String engineVersion = "0.5.0";
 
 
 	//SET YOUR OWN TITLE FOR EACH GAME

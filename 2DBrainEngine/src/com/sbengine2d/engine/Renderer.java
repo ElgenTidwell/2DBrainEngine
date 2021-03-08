@@ -352,6 +352,42 @@ public class Renderer
 			}
 		}		
 	}
+	public void DrawIMG(GFXImage image, int offx, int offy,boolean scalewz,int hi, int wi) {
+		offx -= camx;
+		offy -= camy;
+		if(scalewz)
+		{
+			offx *= zoom;
+			offy *= zoom;
+			int w = (int)(image.getW()*zoom+0.1);
+			int h = (int)(image.getH()*zoom+0.1);
+			image.setW(w);
+			image.setH(h);
+		}
+		//Image Render Optimizing
+		if(offx < -image.getW()) return;
+		if(offy < -image.getH()) return;
+		if(offx >= pW) return;
+		if(offy >= pH) return;
+		
+		int newX = 0;
+		int newY = 0;
+		int newW = image.getW()*wi;
+		int newH = image.getH()*hi;
+		
+		
+		//image clipping code
+		if(offx < 0) {newX -= offx;}
+		if(offy < 0) {newY -= offy;}	
+		if(newW + offx > pW) {newW -= (newW + offx - pW);}
+		if(newH + offy > pH) {newH -= (newH + offy - pH);}
+		
+		for(int y = newY; y < newH; y++) {
+			for(int x = newX; x < newW; x++) {
+				setPixel(x + offx,y + offy, image.getPix()[x + y * image.getW()]);
+			}
+		}		
+	}
 	
 	public void DrawIMGTile(GFXImageTile image,int offx,int offy,int tilex,int tiley) {
 		offx -= camx;
@@ -471,8 +507,7 @@ public class Renderer
 		int off = 2;
 		for(int y = newY; y < newH; y++) {
 			for(int x = newX; x < newW; x++) {
-				if(!((offx < -x) || (offy < -y) || (x+offx >= pW) || (y+offy >= pH)))
-					setPixelAndLayer(x+offx,y+offy,color,layer);
+				setPixelAndLayer(x+offx,y+offy,color,layer);
 			}
 		}
 	}
@@ -559,7 +594,7 @@ public class Renderer
 				
 				x = (1-T)*ax+T*bx;
 				y = (1-T)*ay+T*by;
-				for(int i = 0; i < thickness; i++)
+				for(int i = -thickness; i < thickness; i++)
 					setPixel((int)(x+i),(int)(y+i),0,color,255,zoom,zoom,skewX,skewY);
 		}
 	}
